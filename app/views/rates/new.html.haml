@@ -1,10 +1,23 @@
+%h3 Укажите свое значение
 = form_with scope: :rate, local: true do |form|
   = form.hidden_field :forced, value: true
-  = form.label :value
-  = form.number_field :value, value: @rates.first&.value, step: :any
-  = form.label :end_date
-  = form.datetime_local_field :end_date
-  = form.submit 'Сохранить'
+  .form-group
+    = form.label :value
+    = form.number_field :value, value: @rates.first&.value, step: :any, class: 'form-control'
+  .form-group
+    = form.label :end_date
+    = form.datetime_select :end_date, class: 'form-control'
+  .form-group
+    = form.submit 'Сохранить', class: 'btn btn-primary'
 
-- @rates.each do |rate|
-  %p= rate.value
+%h3 Ранее введенные значения
+%table.table
+  %thead.thead-dark
+    %tr
+      %th Значение
+      %th Время действия
+  %tbody
+    - @rates.each do |rate|
+      %tr
+        %th= rate.value
+        %td= rate.end_date.strftime("%d.%m.%Y, %T")
