@@ -1,7 +1,10 @@
 = form_with scope: :rate, local: true do |form|
   = form.hidden_field :forced, value: true
   = form.label :value
-  = form.number_field :value, step: :any
+  = form.number_field :value, value: @rates.first&.value, step: :any
   = form.label :end_date
   = form.datetime_local_field :end_date
   = form.submit 'Сохранить'
+
+- @rates.each do |rate|
+  %p= rate.value

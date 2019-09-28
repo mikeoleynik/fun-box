@@ -8,6 +8,7 @@ class RatesController < ApplicationController
   end
 
   def new
+    @rates = Rate.forced
     @rate = Rate.new
   end
 

@@ -5,6 +5,7 @@ class Rate < ApplicationRecord
   validates :value, presence: true
 
   scope :forced_rate, -> { where(forced: true).where('end_date > ?', DateTime.current).order(end_date: :desc).limit(1) }
+  scope :forced, -> { where(forced: true).order(created_at: :desc) }
 
   def self.update_rate
     rate = Rate.forced_rate.first
