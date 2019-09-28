@@ -5,6 +5,8 @@ class GetRate
 
   def self.parsing_rate
     res = Faraday.get(URL)
-    JSON.parse(res.body).dig('Valute', 'USD', 'Value')
+    rate_value = JSON.parse(res.body).dig('Valute', 'USD', 'Value')
+    RateBroadcast.new(rate_value).call
+    rate_value
   end
 end
