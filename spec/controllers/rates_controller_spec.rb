@@ -22,4 +22,43 @@ describe RatesController do
       expect(assigns(:rate)).to eq(rate.value)
     end
   end
+
+  describe "GET #new" do
+    before { get :new }
+
+    it "assigns a new Rate to @rate" do
+      expect(assigns(:rate)).to be_a_new(Rate)
+    end
+
+    it "renders new view" do
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'POST /rates' do
+    let(:create_rate) { post :create, params: { rate: attributes_for(:rate) } }
+    let(:create_invalid_rate) { post :create, params: { rate: { value: nil } } }
+
+    context 'valid attributes' do
+      it 'saves the new rate in the database' do
+        expect { create_rate }.to change(Rate, :count).by(1)
+      end
+
+      it "redirect to root path" do
+        create_rate
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'invalid attributes' do
+      it "does not save the article" do
+        expect { create_invalid_rate }.to_not change(Rate, :count)
+      end
+
+      it "re-renders new view" do
+        create_invalid_rate
+        expect(response).to render_template :new
+      end
+    end
+  end
 end
