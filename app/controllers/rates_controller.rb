@@ -2,7 +2,7 @@
 
 class RatesController < ApplicationController
   def index
-    @rate = GetRate.parsing_rate
+    @rate = Rate.last&.value || Rate.create(value: GetRate.parsing_rate).value
   end
 
   def new; end
