@@ -6,7 +6,7 @@ class RatePolicy
 
     if rate.nil?
       rate = Rate.where(forced: false).last&.value ||
-               Rate.create(value: GetRate.parsing_rate).value
+             Rate.create(value: GetRate.parsing_rate).value
     end
     rate
   end
