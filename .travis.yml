@@ -5,6 +5,9 @@ rvm:
 addons:
   postgresql: '10'
 
+services:
+  - redis-server
+
 before_script:
   - sudo /etc/init.d/postgresql restart
   - cp config/database.yml.sample config/database.yml
