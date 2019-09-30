@@ -24,9 +24,9 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             - if request.path == '/admin'
-              %li= link_to 'Курс валют', root_path
+              %li= link_to t(:show_rate, scope: :main), root_path
             - else
-              %li= link_to 'Админка', admin_path
+              %li= link_to t(:dashboard, scope: :admin), admin_path
 
 
     .container
