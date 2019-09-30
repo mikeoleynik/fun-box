@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RatesController < ApplicationController
+  before_action :set_rates, only: [:new, :create]
   after_action :publish_rate, only: [:create]
 
   def index
@@ -8,7 +9,6 @@ class RatesController < ApplicationController
   end
 
   def new
-    @rates = Rate.forced
     @rate = Rate.new
   end
 
@@ -28,6 +28,10 @@ class RatesController < ApplicationController
 
   def rate_params
     params.require(:rate).permit(:value, :end_date, :forced)
+  end
+
+  def set_rates
+    @rates = Rate.forced
   end
 
   def publish_rate

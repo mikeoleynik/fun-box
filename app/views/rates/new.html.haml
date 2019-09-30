@@ -1,5 +1,11 @@
 %h3 Укажите свое значение
 = form_with scope: :rate, local: true do |form|
+  - if @rate.errors.any?
+    %h2 #{pluralize(@rate.errors.count, 'error')} prohibited this rate from being saved:
+    %ul
+      - @rate.errors.full_messages.each do |message|
+        %li= message
+
   = form.hidden_field :forced, value: true
   .form-group
     = form.label :value

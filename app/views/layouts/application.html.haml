@@ -23,7 +23,7 @@
         %a.navbar-brand(href="#") Funbox
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            - if current_page?(admin_path)
+            - if request.path == '/admin'
               %li= link_to 'Курс валют', root_path
             - else
               %li= link_to 'Админка', admin_path
