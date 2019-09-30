@@ -3,6 +3,7 @@
 class GetRate
   URL = 'https://www.cbr-xml-daily.ru/daily_json.js'
 
+  # gets the rate of CBR
   def self.parsing_rate
     res = Faraday.get(URL)
     rate_value = JSON.parse(res.body).dig('Valute', 'USD', 'Value')

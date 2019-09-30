@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Render correct value on the client
 class RateBroadcast
   attr_reader :value
 
