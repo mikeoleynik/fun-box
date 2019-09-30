@@ -1,24 +1,41 @@
-# README
+[![Build Status](https://travis-ci.org/mikeoleynik/fun-box.svg?branch=master)](https://travis-ci.org/mikeoleynik/fun-box)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Тестовое задание для [FunBox](https://funbox.ru/).
 
-Things you may want to cover:
+### Требования:
 
-* Ruby version
+-   Ruby 2.6.3
+-   Rails 5.2.3
 
-* System dependencies
+### Установка:
 
-* Configuration
+Клонируйте репозиторий:
 
-* Database creation
+```
+git@github.com:mikeoleynik/fun-box.git
+```
 
-* Database initialization
+Для установки зависимостей, в папке с проектом выполните:
 
-* How to run the test suite
+```
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Далее создайте БД и выполните миграции:
 
-* Deployment instructions
+```
+rails db:create
+rails db:migrate
+```
 
-* ...
+Обновите планировщик задач:
+
+```
+ whenever -i
+```
+
+Для запуска приложения и sidekiq:
+
+```
+foreman start
+```
