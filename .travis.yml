@@ -8,7 +8,7 @@ addons:
 before_script:
   - sudo /etc/init.d/postgresql restart
   - cp config/database.yml.sample config/database.yml
-  - psql -c 'create database rock_test;' -U postgres
+  - psql -c 'create database fun_test;' -U postgres
 
 script:
   - bundle exec rails db:migrate RAILS_ENV=test
