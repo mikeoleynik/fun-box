@@ -5,7 +5,7 @@ class RatesController < ApplicationController
   after_action :publish_rate, only: [:create]
 
   def index
-    @rate = RatePolicy.call
+    @rate_value = RatePolicy.call
   end
 
   def new

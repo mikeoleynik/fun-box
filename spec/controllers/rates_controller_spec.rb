@@ -15,11 +15,11 @@ describe RatesController do
     end
 
     it 'checking that the value exists' do
-      expect(assigns(:rate)).not_to be_nil
+      expect(assigns(:rate_value)).not_to be_nil
     end
 
     it 'checking that the value to equal value of last rate' do
-      expect(assigns(:rate)).to eq(rate.value)
+      expect(assigns(:rate_value)).to eq(rate.value)
     end
   end
 
