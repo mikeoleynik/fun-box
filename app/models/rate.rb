@@ -10,11 +10,13 @@ class Rate < ApplicationRecord
 
   # updating rate by schedule
   def self.update_rate
-    rate = Rate.forced_rate.first
+    rate = Rate.forced_rate
 
     unless rate.present?
       rate_value = GetRate.parsing_rate
-      Rate.where(forced: false).last&.update(value: rate_value)
+      if Rate.where(forced: false).last&.update(value: rate_value)
+        RateBroadcast.new(rate_value).call
+      end
     end
   end
 end

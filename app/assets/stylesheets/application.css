@@ -15,8 +15,7 @@
  */
 
 .footer {
-   position: absolute;
-   bottom: 0;
-   width: 200px;
-   height: 60px;
+  margin-left: -15px;
+  height: 45px;
+  width: 100%;
 }

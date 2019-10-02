@@ -4,6 +4,6 @@ class GetRealRateJob < ApplicationJob
   queue_as :default
 
   def perform
-    GetRate.parsing_rate
+    ShowRate.retrieve
   end
 end

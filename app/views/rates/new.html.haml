@@ -1,5 +1,12 @@
-%h3 Укажите свое значение
+%h3
+  = t(:enter_value, scope: :admin)
 = form_with scope: :rate, local: true do |form|
+  - if @rate.errors.any?
+    %h2 #{pluralize(@rate.errors.count, 'error')} prohibited this rate from being saved:
+    %ul
+      - @rate.errors.full_messages.each do |message|
+        %li= message
+
   = form.hidden_field :forced, value: true
   .form-group
     = form.label :value
@@ -8,14 +15,15 @@
     = form.label :end_date
     = form.datetime_select :end_date, class: 'form-control'
   .form-group
-    = form.submit 'Сохранить', class: 'btn btn-primary'
+    = form.submit t(:submit_save, scope: :admin), class: 'btn btn-primary'
 
-%h3 Ранее введенные значения
+%h3
+  = t(:previously, scope: :admin)
 %table.table
   %thead.thead-dark
     %tr
-      %th Значение
-      %th Время действия
+      %th= t(:value, scope: :admin)
+      %th= t(:period, scope: :admin)
   %tbody
     - @rates.each do |rate|
       %tr
