@@ -14,7 +14,9 @@ class Rate < ApplicationRecord
 
     unless rate.present?
       rate_value = GetRate.parsing_rate
-      Rate.where(forced: false).last&.update(value: rate_value)
+      if Rate.where(forced: false).last&.update(value: rate_value)
+        RateBroadcast.new(rate_value).call
+      end
     end
   end
 end
