@@ -15,9 +15,7 @@ class RatesController < ApplicationController
   def create
     @rate = Rate.new(rate_params)
 
-    if @rate.save
-      # rate will be updated (will be real) when end date ends
-      GetRealRateJob.set(wait_until: @rate.end_date).perform_later
+    if CreateRate.new(@rate).call
       redirect_to root_path
     else
       render :new
